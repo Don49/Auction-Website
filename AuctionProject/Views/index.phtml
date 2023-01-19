@@ -1,0 +1,18 @@
+<?php
+// Checks to see if the user is logged in or not
+if(isset($_SESSION["loginEmail"]))
+    {
+    require('template/loggedInHeader.phtml');
+    }
+else
+    {
+    require('template/header.phtml');
+    }
+?>
+
+<h1>Welcome to Auction Site </h1>
+
+<br>
+<h2> Feel free to browse our items</h2>
+<br>
+<?php require('template/footer.phtml') ?>

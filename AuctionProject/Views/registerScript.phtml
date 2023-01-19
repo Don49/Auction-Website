@@ -1,0 +1,37 @@
+<?php
+require('template/header.phtml');
+
+if(isset($_SESSION['loginEmail']))
+    header('Location: myAccount.php');
+else
+    echo 'please log in';
+
+?>
+
+<h3>Please login</h3>
+
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <div>
+
+        <label>Real Name:</label>
+        <input type="text" name="name">
+        <br><br>
+        <label>Email:</label>
+        <input type="text" name="email">
+        <br><br>
+        <label>Password:</label>
+        <input type="password" name="password">
+        <br><br>
+
+
+        <input type="submit" name="submit" value="submit">
+        <input type="reset" name="reset" value="Reset">
+    </div>
+</form>
+
+<?php if (isset($view->result)) : ?>
+    <p><?php echo $view->result; ?></p>
+<?php endif; ?>
+
+
+<?php require('template/footer.phtml') ?>

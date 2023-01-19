@@ -1,0 +1,78 @@
+<?php
+
+if(isset($_SESSION["loginEmail"]))
+{
+    require('template/loggedInHeader.phtml');
+}
+else
+{
+    require('template/header.phtml');
+}
+?>
+
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <br>
+
+    <input  style="display: block; margin: auto; width:30%;" type="text" name="searchBar">
+    <input  style="display: block; margin-top: 1%; margin-left: auto;margin-right: auto; width: 5%;" type="submit" name="searchSubmit" value="Search">
+
+        <?php
+
+        foreach ($view->itemDataSet as $itemData)
+        {
+            //echo '<div class="LotDiv" >';
+            //Format using bootstrap grid
+            echo '<div class="container-fluid"> ';
+             echo '<div class="row" style="border: 2px solid red; margin: 1%;" > <div class="col-md-8"> <div class="row"> <div class="col-md-12">';
+
+
+            $itemID = $itemData->getLOTID();
+
+    echo' <h3> Auction ID: ' . $itemData->getAuctionID();
+		echo' </h3>';
+		echo'		</div>  ';
+		echo'	</div>';
+		echo'	<div class="row">';
+		echo'		<div class="col-md-12">';
+
+      echo' <h3> Item Title: ' . $itemData->getItemTitle() ;
+		echo'			</h3>';
+		echo'		</div>';
+		echo'	</div>';
+		echo'	<div class="row">';
+		echo'		<div class="col-md-12">';
+
+      echo' <h3> Item Description: ' . $itemData->getItemDescription();
+		echo'			</h3>';
+		echo'		</div>';
+		echo'	</div>';
+	echo'	</div>';
+		echo'<div class="col-md-4">';
+		echo'	<div class="row">';
+		echo'		<div class="col-md-12">';
+
+      echo' <h4> LOT Number: ' . $itemData->getLOTID();
+		echo'			</h4>';
+		echo'		</div>';
+		echo'	</div>';
+		echo'	<div class="row">';
+		echo'		<div class="col-md-12">';
+		echo'			<img src="' . $itemData->getItemImageName();
+		echo '  "alt="no picture" style="width:10%; height:10%;" /> ';
+		echo ' <input type="submit" name="view"   value="';
+         echo $itemID .  '"  >';
+	echo'			</div> ';
+	echo'		</div>';
+	echo'	</div> ';
+	echo'</div> ';
+echo' </div>';
+
+
+
+        }
+        echo '</div> </div> </div>';
+        ?>
+
+</form>
+
+<?php require('template/footer.phtml') ?>

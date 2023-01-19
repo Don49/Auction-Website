@@ -1,0 +1,42 @@
+<?php
+
+if(isset($_SESSION["loginEmail"]))
+{
+    require('template/loggedInHeader.phtml');
+}
+else
+{
+    header('Location: loginScript.php');
+}
+
+
+?>
+
+<h3>Please login</h3>
+
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <div>
+
+        <label>Auction ID:</label>
+        <input type="text" name="auctionID">
+        <br><br>
+        <label>Item name:</label>
+        <input type="text" name="name">
+        <br><br>
+        <label>Item Description:</label>
+        <input type="text" name="description">
+        <br><br>
+
+
+
+        <input type="submit" name="submit" value="submit">
+        <input type="reset" name="reset" value="Reset">
+    </div>
+</form>
+
+<?php if (isset($view->result)) : ?>
+    <p><?php echo $view->result; ?></p>
+<?php endif; ?>
+
+
+<?php require('template/footer.phtml') ?>

@@ -1,0 +1,28 @@
+<?php
+
+if(isset($_SESSION["loginEmail"]))
+{
+    require('template/loggedInHeader.phtml');
+}
+else
+{
+    require('template/header.phtml');
+}
+?>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <br>
+    <table class="table table-hover">
+       <thead>
+       <tr><th>Auction ID</th><th>Start Date</th><th>LOT ID</th><th>Posting User</th><th>Item Title</th></tr>
+
+       
+       </thead>   
+    <tbody> 
+        <?php foreach ($view->userDataSet as $userData) {
+              echo '<tr> <td>' . $userData->getUserID() . '</td> <td>' . $userData->getRealName() . '</td> <td>' . $userData->getEmail() . '</td> <td>' . $userData->getPassWord() .'</td> </tr>';
+        } ?>
+    </tbody>
+  </table>  
+</form>
+
+<?php require('template/footer.phtml') ?>
